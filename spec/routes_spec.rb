@@ -7,4 +7,11 @@ describe 'Routes', type: :routing do
       action: 'show'
     )
   end
+
+  it '/tickets/new to tickets#new' do
+    expect(get: '/tickets/new').to route_to(
+      controller: 'tickets',
+      action: 'new'
+    )
+  end
 end

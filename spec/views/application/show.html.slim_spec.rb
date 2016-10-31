@@ -10,7 +10,8 @@ describe 'application/show', type: :view do
     it "has 'Open ticket' link" do
       render
 
-      expect(rendered).to have_css 'a', text: 'Open ticket'
+      expect(rendered).to have_css "a[href='#{new_ticket_path}']",
+        text: 'Open ticket'
     end
   end
 
