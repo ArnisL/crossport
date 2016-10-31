@@ -58,3 +58,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'teaspoon-jasmine'
 end
+group :test do
+  gem 'shoulda-matchers'
+end
