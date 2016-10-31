@@ -54,10 +54,18 @@ gem 'react-rails'
 gem 'pundit'
 gem 'slim-rails'
 gem 'devise'
+
+group :development do
+  gem 'hirb'
+end
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'teaspoon-jasmine'
 end
+
 group :test do
   gem 'shoulda-matchers'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
 end
