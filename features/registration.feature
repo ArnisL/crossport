@@ -9,9 +9,9 @@ Feature: Registration
   Scenario: Portal asks to register user
     Then I should see new_user_registration page
 
-  Scenario: User registration
+  Scenario: Successful user registration
     When I fill in 'Email' with 'arnis.lapsa@gmail.com'
     And I fill in 'Password' with '123123'
     And I fill in 'Password confirmation' with '123123'
-    And I click 'Sign up' button
+    And I press 'Sign up'
     Then I should see root page
