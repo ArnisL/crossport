@@ -46,3 +46,15 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
+# Crossport dependencies
+gem 'bootstrap'
+gem 'react-rails'
+gem 'pundit'
+gem 'slim-rails'
+gem 'devise'
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'teaspoon-jasmine'
+end
