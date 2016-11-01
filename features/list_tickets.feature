@@ -21,6 +21,7 @@ Feature: List tickets
       | 1 | test   | open   |
       | 2 | test1  | open   |
     And I should not see 'You have no tickets'
+    And I should see '12' in tickets_total
 
   Scenario: List pagination
     Given I have 10 random tickets

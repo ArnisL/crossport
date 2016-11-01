@@ -1,6 +1,7 @@
 - tickets = current_user.tickets.page(params[:page]).per(10)
 - content_for :title do
   | Support tickets
+  span.badge#tickets_total = current_user.tickets.count
 
 table.table.table-striped.table-hover#tickets
   thead
@@ -19,6 +20,7 @@ table.table.table-striped.table-hover#tickets
       tr.info
         td colspan=3
           | You have no tickets
+
 = paginate tickets
 
 - if signed_in?
