@@ -13,4 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+
+// While bootstrap-sprockets provides individual Bootstrap components for ease of debugging, you may alternatively require the concatenated bootstrap for faster compilation:
+// require bootstrap-sprockets
+//= require bootstrap
+
 //= require_tree .
