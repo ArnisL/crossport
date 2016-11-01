@@ -29,7 +29,7 @@ body {
 }
 
 .has-error {
-  input {
+  input, textarea {
     border: 1px solid #F84600;
   }
   .help-block {
