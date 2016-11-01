@@ -29,6 +29,5 @@ Feature: Open ticket
     And I press 'Open ticket'
 
     When I press 'Open ticket'
-    Then I should see notification 'Ticket is invalid!'
     And I should see error "can't be blank" on 'Title' field
     And I should see error "can't be blank" on 'Description' field

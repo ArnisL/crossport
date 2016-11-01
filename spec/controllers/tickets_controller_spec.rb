@@ -44,7 +44,7 @@ describe TicketsController, type: :controller do
       end
 
       context 'when posting empty form' do
-        it 'shows error' do
+        it 'does not create a ticket' do
           post :create,
             params: {
               ticket: {
@@ -55,7 +55,6 @@ describe TicketsController, type: :controller do
 
           expect(response).to have_http_status :ok
           expect(Ticket.count).to eq 0
-          expect(flash[:error]).to eq 'Ticket is invalid!'
         end
       end
     end
