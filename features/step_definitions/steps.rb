@@ -37,6 +37,6 @@ Then /^I should see (.*) page$/ do |name|
   expect(page.current_path).to eq send "#{name}_path"
 end
 
-Then /^I should see notification 'Ticket successfully opened!'$/ do
-  pending # Write code here that turns the phrase above into concrete actions
+Then /^I should see notification '(.*)'$/ do |notification|
+  expect(page).to have_css '.alert', text: notification
 end

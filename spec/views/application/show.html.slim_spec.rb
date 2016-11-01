@@ -2,9 +2,7 @@ require 'rails_helper'
 
 describe 'application/show', type: :view do
   context 'when authenticated' do
-    before do
-      sign_in create :user
-    end
+    before { sign_in create :user }
 
     it "has 'Open ticket' link" do
       render

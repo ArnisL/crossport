@@ -11,4 +11,7 @@ html
       = link_to destroy_user_session_path, method: :delete do
         | Sign out
     .container
+      - flash.each do |key, value|
+        .alert class="alert-#{key}"
+          = value
       = yield
