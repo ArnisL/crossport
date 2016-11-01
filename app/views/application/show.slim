@@ -1,4 +1,3 @@
-- tickets = current_user.tickets.page(params[:page]).per(10)
 - content_for :title do
   | Support tickets
   span.badge#tickets_total = current_user.tickets.count
@@ -10,8 +9,7 @@ table.table.table-striped.table-hover#tickets
       th Title
       th Status
   tbody
-    / TODO: move to controller/presenter/whatever
-    - tickets.each_with_index do |ticket, index|
+    - @tickets.each do |ticket|
       tr
         td = current_user.tickets.find_index(ticket) + 1
         td = ticket.title
@@ -21,7 +19,7 @@ table.table.table-striped.table-hover#tickets
         td colspan=3
           | You have no tickets
 
-= paginate tickets
+= paginate @tickets
 
 - if signed_in?
   a.btn.btn-primary href=new_ticket_path Open ticket

@@ -13,6 +13,20 @@ Given /^I am an authenticated customer$/ do
   step "I press 'Sign in'"
 end
 
+Given /^I have following tickets:$/ do |table|
+  table.hashes.each do |hash|
+    FactoryGirl.create(:ticket, hash.merge(user: @current_user))
+  end
+end
+
+Given(/^I have (\d+) random tickets$/) do |times|
+  FactoryGirl.create_list(:ticket, times.to_i, user: @current_user)
+end
+
+Given(/^additional (\d+) random tickets$/) do |times|
+  step "I have #{times} random tickets"
+end
+
 When /^I open portal$/ do
   visit root_path
 end
@@ -55,20 +69,6 @@ end
 
 Then(/^I should not see '(.*)'$/) do |text|
   expect(page).to_not have_content text
-end
-
-Given /^I have following tickets:$/ do |table|
-  table.hashes.each do |hash|
-    FactoryGirl.create(:ticket, hash.merge(user: @current_user))
-  end
-end
-
-Given(/^I have (\d+) random tickets$/) do |times|
-  FactoryGirl.create_list(:ticket, times.to_i, user: @current_user)
-end
-
-Given(/^additional (\d+) random tickets$/) do |times|
-  step "I have #{times} random tickets"
 end
 
 Then(/^I should see following (.*) in table:$/) do |table_id, table|

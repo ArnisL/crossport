@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def show
-    redirect_to new_user_session_path unless signed_in?
+    unless signed_in?
+      redirect_to new_user_session_path and return
+    end
+
+    @tickets = current_user.tickets.page(params[:page]).per(10)
   end
 
   private
