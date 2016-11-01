@@ -9,6 +9,13 @@ Feature: Authentication
   Scenario: Portal asks user to login
     Then I should see new_user_session page
 
+  Scenario: Sign in
+    Given I have user with email 'arnis.lapsa@gmail.com' and password '123123'
+    When I fill in 'Email' with 'arnis.lapsa@gmail.com'
+    And I fill in 'Password' with '123123'
+    And I press 'Sign in'
+    Then I should see root page
+
   Scenario: Registration
     When I press 'Sign up'
     When I fill in 'Email' with 'arnis.lapsa@gmail.com'

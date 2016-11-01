@@ -1,9 +1,9 @@
 = form_for(resource, as: resource_name, url: session_path(resource_name),
   html: { class: 'form-signin' }) do |f|
-  h2 Log in
+  h2 Sign in
   = f.label :email, class: 'sr-only'
   = f.email_field :email, autofocus: true, class: 'form-control'
   = f.label :password, class: 'sr-only'
   = f.password_field :password, autocomplete: 'off', class: 'form-control'
-  = f.submit 'Log in', class: 'button btn btn-lg btn-primary btn-block'
+  = f.submit 'Sign in', class: 'button btn btn-lg btn-primary btn-block'
   = render 'devise/shared/links'

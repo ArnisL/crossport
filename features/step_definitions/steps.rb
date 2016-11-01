@@ -12,7 +12,7 @@ Given /^I am an authenticated user$/ do
   step "I open new_user_session page"
   step "I fill in 'Email' with '#{email}'"
   step "I fill in 'Password' with '#{password}'"
-  step "I press 'Log in'"
+  step "I press 'Sign in'"
 end
 
 When /^I open portal$/ do
