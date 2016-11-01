@@ -1,3 +1,4 @@
+- tickets = current_user.tickets.page(params[:page]).per(10)
 - content_for :title do
   | Support tickets
 
@@ -8,16 +9,17 @@ table.table.table-striped.table-hover#tickets
       th Title
       th Status
   tbody
-    - current_user.tickets.each_with_index do |ticket, index|
+    / TODO: move to controller/presenter/whatever
+    - tickets.each_with_index do |ticket, index|
       tr
-        -# TODO: test
-        td = index + 1
+        td = current_user.tickets.find_index(ticket) + 1
         td = ticket.title
         td = ticket.status
     - unless current_user.tickets.any?
       tr.info
         td colspan=3
           | You have no tickets
+= paginate tickets
 
 - if signed_in?
   a.btn.btn-primary href=new_ticket_path Open ticket

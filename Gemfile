@@ -57,6 +57,7 @@ gem 'react-rails'
 gem 'pundit'
 gem 'slim-rails'
 gem 'devise'
+gem 'kaminari'
 
 group :development do
   gem 'hirb'

@@ -1,5 +1,5 @@
 Given /^I have customer with email '([^\"]*)' and password '([^\"]*)'$/ do |email, password|
-  @user = FactoryGirl.create :user,
+  @current_user = FactoryGirl.create :user,
     email: email,
     password: password,
     password_confirmation: password
@@ -47,4 +47,34 @@ end
 
 Then(/^I should see '(.*)'$/) do |text|
   expect(page).to have_content text
+end
+
+Then(/^I should not see '(.*)'$/) do |text|
+  expect(page).to_not have_content text
+end
+
+Given /^I have following tickets:$/ do |table|
+  table.hashes.each do |hash|
+    FactoryGirl.create(:ticket, hash.merge(user: @current_user))
+  end
+end
+
+Given(/^I have (\d+) random tickets$/) do |times|
+  FactoryGirl.create_list(:ticket, times.to_i, user: @current_user)
+end
+
+Given(/^additional (\d+) random tickets$/) do |times|
+  step "I have #{times} random tickets"
+end
+
+Then(/^I should see following (.*) in table:$/) do |table_id, table|
+  table.hashes.each do |hash|
+    row = find_all("##{table_id} tbody tr").select do |row|
+      row.find_all('td')[0].text == hash['#']
+    end[0]
+
+    hash.values.each do |value|
+      expect(row).to have_content value
+    end
+  end
 end
