@@ -9,7 +9,7 @@
         as: resource_name, url: session_path(resource_name) do |f|
 
         fieldset
-          legend User
+          legend Customer
           = f.form_group do
             = f.email_field :email, autofocus: true
           = f.form_group do
@@ -18,3 +18,8 @@
           .btn-group.pull-right
             = render 'devise/shared/links'
             = f.submit 'Sign in', class: 'btn btn-success'
+
+    blockquote.blockquote-reverse
+      p Simplicity is the ultimate sophistication.
+      small
+        cite Leonardo da Vinci
