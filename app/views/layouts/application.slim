@@ -12,6 +12,6 @@ html
         | Sign out
     .container
       - flash.each do |key, value|
-        .alert class="alert-#{key}"
+        .alert class=flash_class(key)
           = value
       = yield

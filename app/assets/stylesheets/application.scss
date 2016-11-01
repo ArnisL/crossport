@@ -14,4 +14,8 @@
  *= require_self
  */
 @import 'bootstrap';
-@import 'sign_in'
+@import 'sign_in';
+
+.alert {
+  text-align: center;
+}
