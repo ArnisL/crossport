@@ -40,3 +40,7 @@ end
 Then /^I should see notification '(.*)'$/ do |notification|
   expect(page).to have_css '.alert', text: notification
 end
+
+Then(/^I should see error "([^"]*)" on '(.*)' field$/) do |error, field|
+  expect(find_field(field).find('+span.help-block').text).to eq error
+end

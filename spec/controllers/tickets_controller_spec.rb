@@ -42,6 +42,22 @@ describe TicketsController, type: :controller do
         expect(Ticket.count).to eq 1
         expect(flash[:notice]).to eq 'Ticket successfully opened!'
       end
+
+      context 'when posting empty form' do
+        it 'shows error' do
+          post :create,
+            params: {
+              ticket: {
+                title: '',
+                description: ''
+              }
+            }
+
+          expect(response).to have_http_status :ok
+          expect(Ticket.count).to eq 0
+          expect(flash[:error]).to eq 'Ticket is invalid!'
+        end
+      end
     end
 
     context 'when anonymous' do

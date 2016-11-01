@@ -5,9 +5,9 @@ Feature: Open ticket
 
   Background:
     Given I am an authenticated user
+    And I press 'Open ticket'
 
   Scenario: Successful ticket opening
-    When I press 'Open ticket'
     Then I should see new_ticket page
 
     When I fill in 'Title' with 'unable to dual-boot windows and linux'
@@ -19,3 +19,9 @@ Feature: Open ticket
       """
     And I press 'Open ticket'
     Then I should see notification 'Ticket successfully opened!'
+
+  Scenario: Unsuccessful ticket opening
+    When I press 'Open ticket'
+    Then I should see notification 'Ticket is invalid!'
+    And I should see error "can't be blank" on 'Title' field
+    And I should see error "can't be blank" on 'Description' field

@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 
+// Required for bootstrap tooltips and popovers
+//= require tether
 // While bootstrap-sprockets provides individual Bootstrap components for ease of debugging, you may alternatively require the concatenated bootstrap for faster compilation:
 // require bootstrap-sprockets
 //= require bootstrap

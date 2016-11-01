@@ -9,11 +9,20 @@ class TicketsController < ApplicationController
   def create
     authorize Ticket
 
-    Ticket.create \
-      params.require(:ticket)
-        .permit(:title, :description)
-        .merge(user: current_user)
+    @ticket = Ticket.new create_params
+    if @ticket.save
+      redirect_to root_path, notice: 'Ticket successfully opened!'
+    else
+      flash[:error] = 'Ticket is invalid!'
+      render :new
+    end
+  end
 
-    redirect_to root_path, notice: 'Ticket successfully opened!'
+  private
+
+  def create_params
+    params.fetch(:ticket)
+      .permit(:title, :description)
+      .merge(user: current_user)
   end
 end
