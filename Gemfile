@@ -62,6 +62,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'teaspoon-jasmine'
+  gem 'factory_girl'
 end
 
 group :test do

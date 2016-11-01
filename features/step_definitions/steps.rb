@@ -1,17 +1,15 @@
 Given /^I have user with email '([^\"]*)' and password '([^\"]*)'$/ do |email, password|
-  @user = User.create email: email,
+  @user = FactoryGirl.create :user,
+    email: email,
     password: password,
     password_confirmation: password
 end
 
 Given /^I am an authenticated user$/ do
-  email = 'arnis.lapsa@gmail.com'
-  password = '123123'
-
-  step "I have user with email '#{email}' and password '#{password}'"
+  step "I have user with email 'arnis.lapsa@gmail.com' and password '123123'"
   step "I open new_user_session page"
-  step "I fill in 'Email' with '#{email}'"
-  step "I fill in 'Password' with '#{password}'"
+  step "I fill in 'Email' with 'arnis.lapsa@gmail.com'"
+  step "I fill in 'Password' with '123123'"
   step "I press 'Sign in'"
 end
 

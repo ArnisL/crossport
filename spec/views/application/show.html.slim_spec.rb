@@ -3,8 +3,7 @@ require 'rails_helper'
 describe 'application/show', type: :view do
   context 'when authenticated' do
     before do
-      sign_in User.create email: 'arnis.lapsa@gmail.com',
-        password: '123123', password_confirmation: '123123'
+      sign_in create :user
     end
 
     it "has 'Open ticket' link" do
