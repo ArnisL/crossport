@@ -1,7 +1,7 @@
 - content_for :title do
   | Support tickets
 
-table.table.table-striped.table-hover
+table.table.table-striped.table-hover#tickets
   thead
     tr
       th #
@@ -10,9 +10,14 @@ table.table.table-striped.table-hover
   tbody
     - current_user.tickets.each_with_index do |ticket, index|
       tr
-        td = index
+        -# TODO: test
+        td = index + 1
         td = ticket.title
         td = ticket.status
+    - unless current_user.tickets.any?
+      tr.info
+        td colspan=3
+          | You have no tickets
 
 - if signed_in?
   a.btn.btn-primary href=new_ticket_path Open ticket

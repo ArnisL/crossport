@@ -7,4 +7,5 @@ Feature: List tickets
     Given I am an authenticated customer
 
   Scenario: Empty list
+    Then I should see 'You have no tickets'
 

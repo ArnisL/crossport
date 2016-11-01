@@ -44,3 +44,7 @@ end
 Then(/^I should see error "([^"]*)" on '(.*)' field$/) do |error, field|
   expect(find_field(field).find('+span.help-block').text).to eq error
 end
+
+Then(/^I should see '(.*)'$/) do |text|
+  expect(page).to have_content text
+end

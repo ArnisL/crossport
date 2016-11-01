@@ -16,5 +16,13 @@ describe 'application/show', type: :view do
 
       expect(view.content_for :title).to have_content 'Support tickets'
     end
+
+    context 'and customer has no tickets' do
+      it "tickets table has info row stating 'You have no tickets'" do
+        render
+
+        expect(rendered).to have_css '#tickets tr.info td', text: 'You have no tickets'
+      end
+    end
   end
 end
