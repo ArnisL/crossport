@@ -10,13 +10,11 @@ describe 'application/show', type: :view do
       expect(rendered).to have_css "a[href='#{new_ticket_path}']",
         text: 'Open ticket'
     end
-  end
 
-  context 'when anonymous' do
-    it "has no 'Open ticket' link" do
+    it "has title 'Support tickets'" do
       render
 
-      expect(rendered).not_to have_css 'a', text: 'Open ticket'
+      expect(view.content_for :title).to have_content 'Support tickets'
     end
   end
 end

@@ -7,11 +7,8 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    - if signed_in?
-      = link_to destroy_user_session_path, method: :delete do
-        | Sign out
+    = render 'header'
+
     .container
-      - flash.each do |key, value|
-        .alert class=flash_class(key)
-          = value
+      = render 'title'
       = yield

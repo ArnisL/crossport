@@ -1,2 +1,18 @@
+- content_for :title do
+  | Support tickets
+
+table.table.table-striped.table-hover
+  thead
+    tr
+      th #
+      th Title
+      th Status
+  tbody
+    - current_user.tickets.each_with_index do |ticket, index|
+      tr
+        td = index
+        td = ticket.title
+        td = ticket.status
+
 - if signed_in?
-  a href=new_ticket_path Open ticket
+  a.btn.btn-primary href=new_ticket_path Open ticket

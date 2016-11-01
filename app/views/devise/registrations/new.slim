@@ -1,20 +1,26 @@
-= form_for resource, as: resource_name, url: registration_path(resource_name),
-  html: { class: 'form-signin' } do |f|
-  h2.form-signin-heading Sign up
-  = devise_error_messages!
-  = f.label :email, class: 'sr-only'
-  = f.email_field :email, autofocus: true, class: 'form-control'
+- content_for :title do
+  | Sign up
 
-  = f.label :password, class: 'sr-only'
-  - if @minimum_password_length
-    em
-      | (#{@minimum_password_length} characters minimum)
-  = f.password_field :password, autocomplete: 'off', class: 'form-control'
+.row
+  .col-lg-6.col-lg-offset-3
+    .well.bs-component
+      = bootstrap_form_for resource, layout: :horizontal,
+        label_col: 'col-lg-3', control_col: 'col-lg-9',
+        as: resource_name, url: registration_path(resource_name) do |f|
 
-  = f.label :password_confirmation, class: 'sr-only'
-  = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control'
+        fieldset
+          legend New user
+          = f.form_group do
+            = f.email_field :email, autofocus: true
 
-  br 
-  = f.submit 'Sign up', class: 'button btn btn-lg btn-primary btn-block'
+          = f.form_group do
+            = f.password_field :password, autocomplete: 'off',
+              help: @minimum_password_length ? \
+                "(#{@minimum_password_length} characters minimum)" : nil
 
-  = render 'devise/shared/links'
+          = f.form_group do
+            = f.password_field :password_confirmation, autocomplete: 'off'
+
+          .btn-group.pull-right
+            = render 'devise/shared/links'
+            = f.submit 'Sign up', class: 'btn btn-success'

@@ -1,9 +1,20 @@
-= form_for(resource, as: resource_name, url: session_path(resource_name),
-  html: { class: 'form-signin' }) do |f|
-  h2 Sign in
-  = f.label :email, class: 'sr-only'
-  = f.email_field :email, autofocus: true, class: 'form-control'
-  = f.label :password, class: 'sr-only'
-  = f.password_field :password, autocomplete: 'off', class: 'form-control'
-  = f.submit 'Sign in', class: 'button btn btn-lg btn-primary btn-block'
-  = render 'devise/shared/links'
+- content_for :title do
+  | Sign in
+
+.row
+  .col-lg-6.col-lg-offset-3
+    .well.bs-component
+      = bootstrap_form_for resource, layout: :horizontal,
+        label_col: 'col-lg-2', control_col: 'col-lg-10',
+        as: resource_name, url: session_path(resource_name) do |f|
+
+        fieldset
+          legend User
+          = f.form_group do
+            = f.email_field :email, autofocus: true
+          = f.form_group do
+            = f.password_field :password, autocomplete: 'off'
+
+          .btn-group.pull-right
+            = render 'devise/shared/links'
+            = f.submit 'Sign in', class: 'btn btn-success'

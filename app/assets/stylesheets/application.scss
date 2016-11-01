@@ -10,31 +10,29 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require rails_bootstrap_forms
  *= require_tree .
  *= require_self
  */
+
+// Import bootstrap-sprockets
+@import 'bootstrap-sprockets';
+// Import lumen theme variables
+@import 'bootswatch/lumen/variables';
 @import 'bootstrap';
-@import 'sign_in';
-@import 'tickets';
+// And finally bootswatch style itself
+@import 'bootswatch/lumen/bootswatch';
+
+body {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
 
 .alert {
   text-align: center;
 }
 
-body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #eee;
-}
-
 .has-error {
-  input, textarea {
-    border: 1px solid #F84600;
-  }
   .help-block {
-    font-size: 0.8em;
-    margin-bottom: 1em;
-    float: right;
+    font-size: 0.9em;
   }
 }

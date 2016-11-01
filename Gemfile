@@ -49,7 +49,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 # Crossport dependencies
-gem 'bootstrap'
+gem 'bootstrap-sass'
+gem 'bootswatch-rails'
 gem 'bootstrap_form'
 gem 'rails-assets-tether', '>= 1.1.0'
 gem 'react-rails'

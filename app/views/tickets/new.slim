@@ -1,5 +1,16 @@
-= bootstrap_form_for @ticket do |f|
-  h2 Open ticket
-  = f.text_field :title, class: 'form-control'
-  = f.text_area :description, rows: 10, class: 'form-control'
-  = f.submit 'Open ticket', class: 'button btn btn-lg btn-primary btn-block'
+- content_for :title do
+  | Open ticket
+
+.row
+  .col-lg-6.col-lg-offset-3
+    .well.bs-component
+      = bootstrap_form_for @ticket, layout: :horizontal,
+        label_col: 'col-lg-2', control_col: 'col-lg-10' do |f|
+
+        fieldset
+          legend Ticket
+          = f.form_group do
+            = f.text_field :title, class: 'form-control'
+          = f.form_group do
+            = f.text_area :description, rows: 10, class: 'form-control'
+          = f.submit 'Open ticket', class: 'btn btn-success pull-right'

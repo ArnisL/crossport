@@ -13,7 +13,6 @@ class TicketsController < ApplicationController
     if @ticket.save
       redirect_to root_path, notice: 'Ticket successfully opened!'
     else
-      flash[:error] = 'Ticket is invalid!'
       render :new
     end
   end
