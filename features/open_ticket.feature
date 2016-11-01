@@ -1,5 +1,5 @@
 Feature: Open ticket
-  As a user
+  As a customer
   I want to open ticket
   So that I can get help from support agents
 
@@ -9,7 +9,7 @@ Feature: Open ticket
     Then I should see new_user_session page
 
   Scenario: Successful ticket opening
-    Given I am an authenticated user
+    Given I am an authenticated customer
     And I press 'Open ticket'
 
     Then I should see new_ticket page
@@ -25,7 +25,7 @@ Feature: Open ticket
     Then I should see notification 'Ticket successfully opened!'
 
   Scenario: Unsuccessful ticket opening
-    Given I am an authenticated user
+    Given I am an authenticated customer
     And I press 'Open ticket'
 
     When I press 'Open ticket'

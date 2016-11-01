@@ -1,12 +1,12 @@
-Given /^I have user with email '([^\"]*)' and password '([^\"]*)'$/ do |email, password|
+Given /^I have customer with email '([^\"]*)' and password '([^\"]*)'$/ do |email, password|
   @user = FactoryGirl.create :user,
     email: email,
     password: password,
     password_confirmation: password
 end
 
-Given /^I am an authenticated user$/ do
-  step "I have user with email 'arnis.lapsa@gmail.com' and password '123123'"
+Given /^I am an authenticated customer$/ do
+  step "I have customer with email 'arnis.lapsa@gmail.com' and password '123123'"
   step "I open new_user_session page"
   step "I fill in 'Email' with 'arnis.lapsa@gmail.com'"
   step "I fill in 'Password' with '123123'"
