@@ -3,11 +3,15 @@ Feature: Open ticket
   I want to open ticket
   So that I can get help from support agents
 
-  Background:
+  Scenario: Denied for unauthenticated users
+    Given I open new_ticket page
+    Then I should see notification 'You are not authorized to perform this action.'
+    Then I should see new_user_session page
+
+  Scenario: Successful ticket opening
     Given I am an authenticated user
     And I press 'Open ticket'
 
-  Scenario: Successful ticket opening
     Then I should see new_ticket page
 
     When I fill in 'Title' with 'unable to dual-boot windows and linux'
@@ -21,6 +25,9 @@ Feature: Open ticket
     Then I should see notification 'Ticket successfully opened!'
 
   Scenario: Unsuccessful ticket opening
+    Given I am an authenticated user
+    And I press 'Open ticket'
+
     When I press 'Open ticket'
     Then I should see notification 'Ticket is invalid!'
     And I should see error "can't be blank" on 'Title' field
