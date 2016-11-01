@@ -15,6 +15,11 @@ Feature: Authentication
     And I fill in 'Password' with '123123'
     And I press 'Sign in'
     Then I should see root page
+    And I should see notification 'Signed in successfully.'
+
+  Scenario: Unsuccessful Sign in
+    When I press 'Sign in'
+    Then I should see notification 'Invalid Email or password'
 
   Scenario: Registration
     When I press 'Sign up'
@@ -23,8 +28,10 @@ Feature: Authentication
     And I fill in 'Password confirmation' with '123123'
     And I press 'Sign up'
     Then I should see root page
+    And I should see notification 'Welcome! You have signed up successfully.'
 
   Scenario: Sign out
     Given I am an authenticated user
     When I press 'Sign out'
     Then I should see new_user_session page
+    And I should see notification 'Signed out successfully.'
