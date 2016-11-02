@@ -20,4 +20,12 @@ describe ApplicationHelper do
         "http://gravatar.com/avatar/5dd2e053a2410fdb27cdf0dff9c64266.png?s=100"
     end
   end
+
+  describe '#status_css' do
+    it 'returns according bootstrap css class for coloring by ticket status' do
+      expect(helper.status_css(:open)).to eq 'label-danger'
+      expect(helper.status_css('in_progress')).to eq 'label-primary'
+      expect(helper.status_css(:finished)).to eq 'label-success'
+    end
+  end
 end
