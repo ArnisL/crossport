@@ -59,6 +59,7 @@ gem 'slim-rails'
 gem 'devise'
 gem 'kaminari'
 gem 'aasm'
+gem 'rails_admin'
 
 group :development do
   gem 'hirb'
