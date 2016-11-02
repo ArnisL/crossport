@@ -15,10 +15,12 @@ table.table.table-striped.table-hover#tickets
         td.index = @all_tickets.find_index(ticket) + 1
         td.title = ticket.title
         td.status
-          = ticket.status
+          = ticket.status.humanize
         td.actions
           - if current_user.agent? && ticket.open?
-            a.btn.btn-success.btn-xs href='#' Take
+            = link_to 'Take', ticket_path(id: ticket.id, event: :take),
+              method: :patch, class: 'btn btn-success btn-xs'
+
     - unless @all_tickets.any?
       tr.info
         td colspan=3

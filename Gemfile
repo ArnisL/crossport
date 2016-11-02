@@ -58,6 +58,7 @@ gem 'pundit'
 gem 'slim-rails'
 gem 'devise'
 gem 'kaminari'
+gem 'aasm'
 
 group :development do
   gem 'hirb'

@@ -11,5 +11,5 @@ Feature: Takes ticket
     When I press 'Take'
     Then I should see following tickets in table:
       | #  | Status      |
-      | 1  | in progress |
+      | 1  | In progress |
 

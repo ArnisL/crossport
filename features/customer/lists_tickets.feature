@@ -18,8 +18,8 @@ Feature: Lists tickets
     And I open portal
     Then I should see following tickets in table:
       | # | Title  | Status |
-      | 1 | test   | open   |
-      | 2 | test1  | open   |
+      | 1 | test   | Open   |
+      | 2 | test1  | Open   |
     And I should not see 'You have no tickets'
     And I should see '12' in tickets_total
 

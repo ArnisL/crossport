@@ -38,7 +38,7 @@ describe 'application/show', type: :view do
 
       expect(rendered).to have_css '#tickets td.index', text: '1'
       expect(rendered).to have_css '#tickets td.title', text: ticket.title
-      expect(rendered).to have_css '#tickets td.status', text: ticket.status
+      expect(rendered).to have_css '#tickets td.status', text: ticket.status.humanize
     end
 
     it 'customer has no option to Take it' do
@@ -57,7 +57,11 @@ describe 'application/show', type: :view do
       it 'offers to Take it' do
         render
 
-        expect(rendered).to have_css '#tickets td.actions .btn', text: 'Take'
+        path = ticket_path(user.tickets.last, event: :take)
+
+        selector = "#tickets td.actions .btn[data-method='patch'][href='#{path}']"
+
+        expect(rendered).to have_css selector, text: 'Take'
       end
     end
   end

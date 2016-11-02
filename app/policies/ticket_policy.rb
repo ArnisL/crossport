@@ -7,6 +7,11 @@ class TicketPolicy < ApplicationPolicy
   end
 
   def create?
-    user.present?
+    user.present? && user.customer?
+  end
+
+  def update?
+    user.present? &&
+      user.agent?
   end
 end

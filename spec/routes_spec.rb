@@ -21,4 +21,12 @@ describe 'Routes', type: :routing do
       action: 'create'
     )
   end
+
+  it 'patch /tickets/1 to tickets#update' do
+    expect(patch: '/tickets/1').to route_to(
+      controller: 'tickets',
+      action: 'update',
+      id: '1'
+    )
+  end
 end

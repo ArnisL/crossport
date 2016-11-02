@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 describe TicketsController, type: :controller do
+  let(:user) { create :user }
+  let(:agent) { create :user, role: :agent }
   describe '#new' do
     context 'when authenticated' do
-      before { sign_in create :user }
+      before { sign_in user }
 
       it 'initializes new ticket' do
         get :new
@@ -25,7 +27,7 @@ describe TicketsController, type: :controller do
 
   describe '#create' do
     context 'when authenticated' do
-      before { sign_in create :user }
+      before { sign_in user }
 
       it 'creates new ticket' do
         ticket = build :ticket
@@ -66,6 +68,24 @@ describe TicketsController, type: :controller do
         expect(response).to have_http_status :redirect
         expect(Ticket.count).to eq 0
       end
+    end
+  end
+
+  describe '#update' do
+    let(:ticket) { create :ticket, user: user }
+
+    before { sign_in agent }
+
+    it 'allows to take tickets' do
+      patch :update, params: { id: ticket.id, event: :take }
+
+      expect(ticket.reload).to be_in_progress
+    end
+
+    it 'ignores invalid events' do
+      patch :update, params: { id: ticket.id, event: :invalid }
+
+      expect(ticket.reload).to be_open
     end
   end
 end

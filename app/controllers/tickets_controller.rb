@@ -10,11 +10,20 @@ class TicketsController < ApplicationController
     authorize Ticket
 
     @ticket = Ticket.new create_params
-    if @ticket.save
-      redirect_to root_path, notice: 'Ticket successfully opened!'
-    else
-      render :new
-    end
+    @ticket.save and
+      redirect_to root_path,
+        notice: 'Ticket successfully opened!' and return
+
+    render :new
+  end
+
+  def update
+    @ticket = Ticket.find params[:id]
+    authorize @ticket
+
+    @ticket.trigger! params[:event]
+
+    redirect_to root_path
   end
 
   private
