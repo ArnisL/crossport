@@ -52,3 +52,10 @@ table#tickets {
 #tickets_total {
   margin-left: 1em;
 }
+
+.tickets.progress {
+  opacity: 0.7;
+  height: 0.3em;
+  top: 0.5em;
+  position: relative;
+}

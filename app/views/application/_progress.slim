@@ -1,0 +1,11 @@
+- if current_user.agent?
+  - total_count = @all_tickets.count
+  - open = @all_tickets.open.count.to_f / total_count * 100
+  - in_progress = @all_tickets.in_progress.count.to_f / total_count * 100
+  - finished = @all_tickets.finished.count.to_f / total_count * 100
+
+  .col-lg-1.pull-right
+    .progress.tickets
+      .progress-bar.progress-bar-danger style=("width: #{open}%") 
+      .progress-bar.progress-bar-primary style=("width: #{in_progress}%") 
+      .progress-bar.progress-bar-success style=("width: #{finished}%") 
