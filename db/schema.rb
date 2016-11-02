@@ -13,10 +13,12 @@
 ActiveRecord::Schema.define(version: 20161031103307) do
 
   create_table "tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "user_id"
-    t.string  "title"
-    t.text    "description", limit: 65535
-    t.integer "status",                    default: 0
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "description", limit: 65535
+    t.integer  "status",                    default: 0
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.index ["user_id"], name: "index_tickets_on_user_id", using: :btree
   end
 
