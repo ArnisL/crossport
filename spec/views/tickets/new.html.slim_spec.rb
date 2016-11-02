@@ -10,7 +10,7 @@ describe 'tickets/new', type: :view do
     expect(rendered).to have_css 'input#ticket_title'
     expect(rendered).to have_css 'textarea#ticket_description'
     expect(rendered).to have_css \
-      "form#new_ticket input[type='submit'][value='Open ticket']"
+      "form#new_ticket input[type='submit'][value='Open']"
   end
 
   it 'shows ticket errors' do

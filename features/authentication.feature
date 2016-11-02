@@ -10,7 +10,7 @@ Feature: Authentication
     Then I should see new_user_session page
 
   Scenario: Sign in
-    Given I have customer with email 'arnis.lapsa@gmail.com' and password '123123'
+    Given I have user with email 'arnis.lapsa@gmail.com' and password '123123' roled as customer
     When I fill in 'Email' with 'arnis.lapsa@gmail.com'
     And I fill in 'Password' with '123123'
     And I press 'Sign in'

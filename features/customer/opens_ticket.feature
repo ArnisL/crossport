@@ -1,4 +1,4 @@
-Feature: Open ticket
+Feature: Opens ticket
   As a customer
   I want to open ticket
   So that I can get help from support agents
@@ -21,13 +21,13 @@ Feature: Open ticket
 
       installed linux, unable to repair windows BCD
       """
-    And I press 'Open ticket'
+    And I press 'Open'
     Then I should see notification 'Ticket successfully opened!'
 
   Scenario: Unsuccessful ticket opening
     Given I am an authenticated customer
     And I press 'Open ticket'
 
-    When I press 'Open ticket'
+    When I press 'Open'
     And I should see error "can't be blank" on 'Title' field
     And I should see error "can't be blank" on 'Description' field

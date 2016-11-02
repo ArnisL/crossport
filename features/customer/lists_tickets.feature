@@ -1,4 +1,4 @@
-Feature: List tickets
+Feature: Lists tickets
   As a customer
   I want to see my tickets listed
   So that I know I've been helped

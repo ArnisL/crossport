@@ -1,12 +1,13 @@
-Given /^I have customer with email '([^\"]*)' and password '([^\"]*)'$/ do |email, password|
+Given /^I have user with email '([^\"]*)' and password '([^\"]*)' roled as (.*)$/ do |email, password, role|
   @current_user = FactoryGirl.create :user,
     email: email,
     password: password,
-    password_confirmation: password
+    password_confirmation: password,
+    role: role
 end
 
 Given /^I am an authenticated customer$/ do
-  step "I have customer with email 'arnis.lapsa@gmail.com' and password '123123'"
+  step "I have user with email 'arnis.lapsa@gmail.com' and password '123123' roled as customer"
   step "I open new_user_session page"
   step "I fill in 'Email' with 'arnis.lapsa@gmail.com'"
   step "I fill in 'Password' with '123123'"
@@ -25,6 +26,18 @@ end
 
 Given(/^additional (\d+) random tickets$/) do |times|
   step "I have #{times} random tickets"
+end
+
+Given(/^I am authenticated support agent$/) do
+  step "I have user with email 'arnis.lapsa@gmail.com' and password '123123' roled as agent"
+  step "I open new_user_session page"
+  step "I fill in 'Email' with 'arnis.lapsa@gmail.com'"
+  step "I fill in 'Password' with '123123'"
+  step "I press 'Sign in'"
+end
+
+Given(/^there is an open ticket$/) do
+  FactoryGirl.create :ticket, status: :open, user: FactoryGirl.create(:user)
 end
 
 When /^I open portal$/ do

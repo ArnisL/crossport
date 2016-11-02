@@ -1,6 +1,6 @@
 - content_for :title do
   | Support tickets
-  span.badge#tickets_total = current_user.tickets.count
+  span.badge#tickets_total = @all_tickets.count
 
 table.table.table-striped.table-hover#tickets
   thead
@@ -8,13 +8,18 @@ table.table.table-striped.table-hover#tickets
       th #
       th Title
       th Status
+      th
   tbody
     - @tickets.each do |ticket|
       tr
-        td = current_user.tickets.find_index(ticket) + 1
-        td = ticket.title
-        td = ticket.status
-    - unless current_user.tickets.any?
+        td.index = @all_tickets.find_index(ticket) + 1
+        td.title = ticket.title
+        td.status
+          = ticket.status
+        td.actions
+          - if current_user.agent? && ticket.open?
+            a.btn.btn-success.btn-xs href='#' Take
+    - unless @all_tickets.any?
       tr.info
         td colspan=3
           | You have no tickets
