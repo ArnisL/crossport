@@ -55,6 +55,12 @@ describe 'application/show', type: :view do
     let(:ticket) { user.tickets.last }
     before { sign_in agent }
 
+    it "hides 'Open ticket' button" do
+      render
+
+      expect(rendered).not_to have_css 'a.btn', text: 'Open ticket'
+    end
+
     context 'and customer has opened a ticket' do
       before { user.tickets << create(:ticket, status: :open, user: user) }
       it 'offers to Take it' do
