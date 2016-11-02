@@ -64,5 +64,18 @@ describe 'application/show', type: :view do
         expect(rendered).to have_css selector, text: 'Take'
       end
     end
+
+    context 'and have taken a ticket' do
+      before { user.tickets << create(:ticket, status: :in_progress, user: user) }
+      it 'offers to Finish it' do
+        render
+
+        path = ticket_path(user.tickets.last, event: :finish)
+
+        selector = "#tickets td.actions .btn[data-method='patch'][href='#{path}']"
+
+        expect(rendered).to have_css selector, text: 'Finish'
+      end
+    end
   end
 end

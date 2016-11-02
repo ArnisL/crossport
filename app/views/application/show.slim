@@ -17,9 +17,14 @@ table.table.table-striped.table-hover#tickets
         td.status
           = ticket.status.humanize
         td.actions
-          - if current_user.agent? && ticket.open?
-            = link_to 'Take', ticket_path(id: ticket.id, event: :take),
-              method: :patch, class: 'btn btn-success btn-xs'
+          - if current_user.agent?
+            - if ticket.open?
+              = link_to 'Take', ticket_path(id: ticket.id, event: :take),
+                method: :patch, class: 'btn btn-success btn-xs'
+
+            - if ticket.in_progress?
+              = link_to 'Finish', ticket_path(id: ticket.id, event: :finish),
+                method: :patch, class: 'btn btn-primary btn-xs'
 
     - unless @all_tickets.any?
       tr.info
