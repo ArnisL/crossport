@@ -41,6 +41,12 @@ table#tickets {
   tr.info {
     text-align: center;
   }
+  .opened_by {
+    img.thumbnail {
+      margin-bottom: 0;
+      margin-right: 0.5em;
+    }
+  }
 }
 
 #tickets_total {

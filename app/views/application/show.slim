@@ -6,6 +6,8 @@ table.table.table-striped.table-hover#tickets
   thead
     tr
       th #
+      - unless current_user.customer?
+        th Opened by
       th Title
       th Status
       th
@@ -13,6 +15,10 @@ table.table.table-striped.table-hover#tickets
     - @tickets.each do |ticket|
       tr
         td.index = @all_tickets.find_index(ticket) + 1
+        - unless current_user.customer?
+          td.opened_by
+            = ticket.user.email
+            = image_tag gravatar_url(ticket.user.email, 32), class: 'thumbnail pull-left'
         td.title = ticket.title
         td.status
           = ticket.status.humanize
@@ -28,7 +34,7 @@ table.table.table-striped.table-hover#tickets
 
     - unless @all_tickets.any?
       tr.info
-        td colspan=3
+        td colspan=(current_user.agent? ? 5 : 4)
           | You have no tickets
 
 = paginate @tickets

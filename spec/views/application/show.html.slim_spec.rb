@@ -26,6 +26,8 @@ describe 'application/show', type: :view do
       render
 
       expect(rendered).to have_css '#tickets tr.info td', text: 'You have no tickets'
+      column_count = Nokogiri.parse(rendered).css('#tickets th').count
+      expect(rendered).to have_css "#tickets tr.info td[colspan='#{column_count}']"
     end
   end
 
@@ -50,6 +52,7 @@ describe 'application/show', type: :view do
 
   context 'when authenticated as agent' do
     let(:agent) { create :user, role: :agent }
+    let(:ticket) { user.tickets.last }
     before { sign_in agent }
 
     context 'and customer has opened a ticket' do
@@ -62,6 +65,13 @@ describe 'application/show', type: :view do
         selector = "#tickets td.actions .btn[data-method='patch'][href='#{path}']"
 
         expect(rendered).to have_css selector, text: 'Take'
+      end
+
+      it 'shows which customer has opened ticket' do
+        render
+
+        expect(rendered).to have_css '#tickets td.opened_by', text: ticket.user.email
+        expect(rendered).to have_css '#tickets td.opened_by img.thumbnail'
       end
     end
 

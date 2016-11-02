@@ -13,4 +13,11 @@ describe ApplicationHelper do
       expect(helper.flash_class :iNvAlId).to eq 'iNvAlId'
     end
   end
+
+  describe '#gravatar_url' do
+    it 'returns gravatar url' do
+      expect(helper.gravatar_url('arnis.lapsa@gmail.com', 100)).to eq \
+        "http://gravatar.com/avatar/5dd2e053a2410fdb27cdf0dff9c64266.png?s=100"
+    end
+  end
 end
