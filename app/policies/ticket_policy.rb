@@ -14,4 +14,17 @@ class TicketPolicy < ApplicationPolicy
     user.present? &&
       user.agent?
   end
+
+  class Scope
+    attr_reader :user, :scope
+
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+
+    def resolve
+      user.agent? ? scope : scope.by_user(user)
+    end
+  end
 end

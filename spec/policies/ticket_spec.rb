@@ -33,4 +33,21 @@ describe TicketPolicy do
       expect(subject).not_to permit(nil, ticket)
     end
   end
+
+  describe '.scope' do
+    let(:agent) { create :user, role: :agent}
+    let(:customer) { create :user, role: :customer}
+    before do
+      create :ticket, user: customer
+      create :ticket, user: create(:user)
+    end
+
+    it 'contains all if agent' do
+      expect(Pundit.policy_scope(agent, Ticket).all).to match_array Ticket.all
+    end
+
+    it 'contains owned if customer' do
+      expect(Pundit.policy_scope(customer, Ticket).all).to match_array customer.tickets
+    end
+  end
 end

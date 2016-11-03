@@ -8,12 +8,7 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_path and return
     end
 
-    # TODO: ugly. policy scopes something something
-    if current_user.customer?
-      @all_tickets = current_user.tickets
-    else
-      @all_tickets = Ticket.all
-    end
+    @all_tickets = policy_scope(Ticket.all)
 
     @tickets = @all_tickets.page(params[:page]).per(10)
   end

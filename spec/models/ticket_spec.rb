@@ -35,4 +35,13 @@ describe Ticket do
       expect(subject.can_trigger? :invalid).to be_falsey
     end
   end
+
+  it '#by_user' do
+    user = create :user
+    create :ticket, user: user
+    create :ticket, user: create(:user)
+
+    expect(Ticket.count).to eq 2
+    expect(Ticket.by_user(user).count).to eq 1
+  end
 end

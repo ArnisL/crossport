@@ -3,6 +3,8 @@ class Ticket < ApplicationRecord
   enum status: [:open, :in_progress, :finished]
   validates :title, :description, presence: true
 
+  scope :by_user, ->(user){ where user: user }
+
   include AASM
   aasm column: :status, enum: true do
     state :open, initial: true
