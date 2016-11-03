@@ -6,5 +6,8 @@
       ul.nav.navbar-nav.navbar-right
         - if signed_in?
           li
+            .email.text-muted
+              = current_user.email
+          li
             = link_to destroy_user_session_path, method: :delete do
               | Sign out
