@@ -68,7 +68,9 @@ describe 'application/show', type: :view do
 
         path = ticket_path(user.tickets.last, event: :take)
 
-        selector = "#tickets td.actions .btn[data-method='patch'][href='#{path}']"
+        selector = 
+          "#tickets td.actions .btn[data-method='patch']" +
+          "[href='#{path}'][data-remote='true']"
 
         expect(rendered).to have_css selector, text: 'Take'
       end
@@ -88,7 +90,9 @@ describe 'application/show', type: :view do
 
         path = ticket_path(user.tickets.last, event: :finish)
 
-        selector = "#tickets td.actions .btn[data-method='patch'][href='#{path}']"
+        selector = 
+          "#tickets td.actions .btn[data-method='patch']"+
+          "[href='#{path}'][data-remote='true']"
 
         expect(rendered).to have_css selector, text: 'Finish'
       end

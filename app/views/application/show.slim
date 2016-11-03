@@ -30,11 +30,11 @@ table.table.table-striped.table-hover#tickets
           - if current_user.agent?
             - if ticket.open?
               = link_to 'Take', ticket_path(id: ticket.id, event: :take),
-                method: :patch, class: 'btn btn-default btn-xs'
+                method: :patch, class: 'btn btn-default btn-xs', remote: true
 
             - if ticket.in_progress?
               = link_to 'Finish', ticket_path(id: ticket.id, event: :finish),
-                method: :patch, class: 'btn btn-default btn-xs'
+                method: :patch, class: 'btn btn-default btn-xs', remote: true
 
     - unless @all_tickets.any?
       tr.info
