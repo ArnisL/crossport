@@ -2,6 +2,7 @@
   .container
     .navbar-header
       a.navbar-brand href=root_path CrossPort
+
     #navbar-main.navbar-collapse.collapse
       ul.nav.navbar-nav.navbar-right
         - if signed_in?
@@ -11,3 +12,7 @@
           li
             = link_to destroy_user_session_path, method: :delete do
               | Sign out
+
+      form.navbar-form.navbar-right role='search' path=root_path
+        .form-group
+          input.form-control name='q' placeholder='Search...' type='text' value=params[:q] /

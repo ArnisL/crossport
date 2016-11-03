@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_path and return
     end
 
-    @all_tickets = policy_scope(Ticket.all)
+    @all_tickets = policy_scope(Ticket.all).search(params[:q])
 
     @tickets = @all_tickets.page(params[:page]).per(10)
   end

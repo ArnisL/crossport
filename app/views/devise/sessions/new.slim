@@ -19,7 +19,8 @@
             = render 'devise/shared/links'
             = f.submit 'Sign in', class: 'btn btn-success'
 
-    blockquote.blockquote-reverse
-      p Simplicity is the ultimate sophistication.
-      small
-        cite Leonardo da Vinci
+    - if Rails.env.development?
+      blockquote.blockquote-reverse
+        p Simplicity is the ultimate sophistication.
+        small
+          cite Leonardo da Vinci

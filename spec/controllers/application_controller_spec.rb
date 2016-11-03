@@ -21,6 +21,16 @@ describe ApplicationController, type: :controller do
 
         expect(assigns(:tickets)).to eq user.tickets.last(2)
       end
+
+      it 'calls search with q param' do
+        create :ticket, title: 'find it', description: 'x', user: user
+        create :ticket, title: 'x', description: 'find it', user: user
+        create :ticket, title: 'x', description: 'x', user: user
+
+        get :show, params: { q: 'find it' }
+
+        expect(assigns(:all_tickets).count).to eq 2
+      end
     end
   end
 end

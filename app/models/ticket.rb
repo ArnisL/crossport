@@ -4,6 +4,9 @@ class Ticket < ApplicationRecord
   validates :title, :description, presence: true
 
   scope :by_user, ->(user){ where user: user }
+  scope :search, ->(phrase) {
+    where("title LIKE ? OR description LIKE ?", "%#{phrase}%", "%#{phrase}%") if phrase.present?
+  }
 
   include AASM
   aasm column: :status, enum: true do

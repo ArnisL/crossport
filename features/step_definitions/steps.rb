@@ -95,3 +95,7 @@ Then(/^I should see following (.*) in table:$/) do |table_id, table|
     end
   end
 end
+
+When(/^I search tickets by '(.*)'$/) do |phrase|
+  visit root_path(q: phrase)
+end

@@ -35,3 +35,17 @@ Feature: Lists tickets
       | #  | Title    |
       | 11 | eleventh |
       | 12 | twelfth  |
+
+  Scenario: Search
+    Given I have following tickets:
+      | title           | description  |
+      | find this       | lorem ipsum  |
+      | move along      | move along   |
+      | foobar          | find this    |
+
+    When I search tickets by 'find this'
+    Then I should see following tickets in table:
+      | # | Title     |
+      | 1 | find this |
+      | 2 | foobar    |
+    And I should see '2' in tickets_total

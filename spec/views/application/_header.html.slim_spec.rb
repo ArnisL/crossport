@@ -29,4 +29,12 @@ describe 'application/_header', type: :view do
     render
     expect(rendered).to have_css '.navbar-right .email.text-muted', text: user.email
   end
+
+  it 'has search form' do
+    render
+
+    path = root_path
+
+    expect(rendered).to have_css "#navbar-main form[role='search'][path='#{path}']"
+  end
 end

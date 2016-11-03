@@ -13,4 +13,8 @@ FactoryGirl.define do
       installed linux, unable to repair windows BCD
       description
   end
+
+  factory :owned_ticket, parent: :ticket do
+    user
+  end
 end
