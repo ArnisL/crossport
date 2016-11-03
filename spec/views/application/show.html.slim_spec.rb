@@ -14,7 +14,7 @@ describe 'application/show', type: :view do
     expect(view.content_for :title).to have_content 'Support tickets'
   end
 
-  it "has 'Open ticket' link" do
+  it "has 'Open ticket' button" do
     render
 
     expect(rendered).to have_css "a[href='#{new_ticket_path}']",
@@ -22,10 +22,10 @@ describe 'application/show', type: :view do
   end
 
   context 'when customer has no tickets' do
-    it "tickets table has info row stating 'You have no tickets'" do
+    it "tickets table has info row stating 'There are no tickets'" do
       render
 
-      expect(rendered).to have_css '#tickets tr.info td', text: 'You have no tickets'
+      expect(rendered).to have_css '#tickets tr.info td', text: 'There are no tickets'
       column_count = Nokogiri.parse(rendered).css('#tickets th').count
       expect(rendered).to have_css "#tickets tr.info td[colspan='#{column_count}']"
     end
@@ -59,6 +59,13 @@ describe 'application/show', type: :view do
       render
 
       expect(rendered).not_to have_css 'a.btn', text: 'Open ticket'
+    end
+
+    it "has 'Monthly report' button" do
+      render
+
+      expect(rendered).to have_css "a[href='#{monthly_report_path(format: :pdf)}']",
+        text: 'Monthly report'
     end
 
     context 'and customer has opened a ticket' do

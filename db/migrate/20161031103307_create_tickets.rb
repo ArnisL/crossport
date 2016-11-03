@@ -5,6 +5,7 @@ class CreateTickets < ActiveRecord::Migration[5.0]
       t.string :title
       t.text :description
       t.integer :status, default: 0
+      t.datetime :finished_at
       t.timestamps null: false
     end
   end

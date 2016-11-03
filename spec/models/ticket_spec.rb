@@ -36,7 +36,7 @@ describe Ticket do
     end
   end
 
-  it '#by_user' do
+  it '.by_user' do
     user = create :user
     create :ticket, user: user
     create :ticket, user: create(:user)
@@ -44,4 +44,8 @@ describe Ticket do
     expect(Ticket.count).to eq 2
     expect(Ticket.by_user(user).count).to eq 1
   end
+
+  xit '.last_month'
+  xit '.search'
+  xit 'sets finished_at on #finish'
 end

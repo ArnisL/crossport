@@ -1,0 +1,16 @@
+h1 Closed tickets last month
+table cellspacing='10'
+  thead
+    th Title
+    th Opened by
+    th Opened at
+    th Closed at
+    th Description
+  tbody
+    - @tickets.each do |ticket|
+      tr
+        td = ticket.title
+        td = ticket.user.email
+        td = ticket.created_at.to_formatted_s(:short)
+        td = ticket.finished_at.to_formatted_s(:short)
+        td = ticket.description

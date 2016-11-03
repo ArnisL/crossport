@@ -6,6 +6,10 @@ describe TicketPolicy do
   let(:agent) { create(:user, role: :agent) }
   let(:ticket) { create(:ticket, user: customer) }
 
+  permissions :monthly_report? do
+    xit 'grants access if agent'
+  end
+
   permissions :create? do
     it 'grants access if customer' do
       expect(subject).to permit(customer, Ticket)

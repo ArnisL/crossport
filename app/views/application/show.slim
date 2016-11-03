@@ -40,9 +40,12 @@ table.table.table-striped.table-hover#tickets
     - unless @all_tickets.any?
       tr.info
         td colspan=(current_user.agent? ? 5 : 4)
-          | You have no tickets
+          | There are no tickets
 
 = paginate @tickets
 
 - if signed_in? && current_user.customer?
   a.btn.btn-primary href=new_ticket_path Open ticket
+
+- if signed_in? && current_user.agent?
+  a.btn.btn-primary href=monthly_report_path(format: :pdf) Monthly report

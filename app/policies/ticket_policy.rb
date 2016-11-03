@@ -15,6 +15,10 @@ class TicketPolicy < ApplicationPolicy
       user.agent?
   end
 
+  def monthly_report?
+    user && user.agent?
+  end
+
   class Scope
     attr_reader :user, :scope
 

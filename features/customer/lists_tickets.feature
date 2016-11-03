@@ -7,7 +7,7 @@ Feature: Lists tickets
     Given I am an authenticated customer
 
   Scenario: Empty list
-    Then I should see 'You have no tickets'
+    Then I should see 'There are no tickets'
 
   Scenario: Full list
     Given I have following tickets:
@@ -20,7 +20,7 @@ Feature: Lists tickets
       | # | Title  | Status |
       | 1 | test   | Open   |
       | 2 | test1  | Open   |
-    And I should not see 'You have no tickets'
+    And I should not see 'There are no tickets'
     And I should see '12' in tickets_total
 
   Scenario: List pagination

@@ -7,6 +7,7 @@ class Ticket < ApplicationRecord
   scope :search, ->(phrase) {
     where("title LIKE ? OR description LIKE ?", "%#{phrase}%", "%#{phrase}%") if phrase.present?
   }
+  scope :last_month, ->{ where('finished_at > ?', DateTime.current - 1.month) }
 
   include AASM
   aasm column: :status, enum: true do
@@ -18,7 +19,7 @@ class Ticket < ApplicationRecord
     end
 
     event :finish do
-      transitions from: :in_progress, to: :finished
+      transitions from: :in_progress, to: :finished, after: -> { update_attribute :finished_at, DateTime.current }
     end
   end
 

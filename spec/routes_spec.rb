@@ -29,4 +29,11 @@ describe 'Routes', type: :routing do
       id: '1'
     )
   end
+
+  it 'get /monthly_report to application#monthly_report' do
+    expect(get: '/monthly_report').to route_to(
+      controller: 'application',
+      action: 'monthly_report'
+    )
+  end
 end

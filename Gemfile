@@ -60,6 +60,8 @@ gem 'devise'
 gem 'kaminari'
 gem 'aasm'
 gem 'rails_admin'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 group :development do
   gem 'hirb'

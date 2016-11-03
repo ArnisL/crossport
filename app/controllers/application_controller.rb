@@ -13,6 +13,18 @@ class ApplicationController < ActionController::Base
     @tickets = @all_tickets.page(params[:page]).per(10)
   end
 
+  def monthly_report
+    authorize Ticket, :monthly_report?
+    @tickets = policy_scope(Ticket.finished.last_month)
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render layout: false, pdf: 'monthly_report'
+      end
+    end
+  end
+
   private
 
   def user_not_authorized

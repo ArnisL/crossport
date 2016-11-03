@@ -33,4 +33,14 @@ describe ApplicationController, type: :controller do
       end
     end
   end
+
+  describe '#monthly_report' do
+    it 'exists' do
+      get :monthly_report
+    end
+
+    xit 'authorizes user'
+    xit 'assigns @tickets'
+    xit 'can respond to pdf format'
+  end
 end

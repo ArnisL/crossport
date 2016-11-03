@@ -40,6 +40,10 @@ Given(/^there is an open ticket$/) do
   FactoryGirl.create :ticket, status: :open, user: FactoryGirl.create(:user)
 end
 
+Given(/^there is a closed ticket$/) do
+  FactoryGirl.create :ticket, status: :finished, user: FactoryGirl.create(:user)
+end
+
 When /^I open portal$/ do
   visit root_path
 end
@@ -98,4 +102,12 @@ end
 
 When(/^I search tickets by '(.*)'$/) do |phrase|
   visit root_path(q: phrase)
+end
+
+Then(/^I should receive pdf file$/) do
+    pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^pdf file should contain (\d+) ticket$/) do |arg1|
+    pending # Write code here that turns the phrase above into concrete actions
 end
