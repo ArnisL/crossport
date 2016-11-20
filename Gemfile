@@ -65,6 +65,7 @@ gem 'wkhtmltopdf-binary'
 
 group :development do
   gem 'hirb'
+  gem 'rails-erd'
 end
 
 group :development, :test do
@@ -74,6 +75,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'simplecov', require: false, group: :test
   gem 'shoulda-matchers'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'

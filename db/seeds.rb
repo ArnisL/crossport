@@ -47,4 +47,14 @@ if Rails.env.development?
     title: 'how to windows?',
     description: 'lorem ipsum',
     created_at: Time.now - 5.months
+
+  customer.tickets.create \
+    title: 'should i buy windows?',
+    description: 'lorem ipsum',
+    created_at: Time.now - 5.months
+
+  customer.tickets.create \
+    title: 'too much windows, help!',
+    description: 'lorem ipsum',
+    created_at: Time.now - 5.months
 end
